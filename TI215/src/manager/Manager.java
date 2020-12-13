@@ -3,7 +3,10 @@ package manager;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.plaf.synth.SynthMenuBarUI;
+
 import data.Data;
+import data.Device;
 import manager.exception.ManagerMethodNotFound;
 import ui.Action;
 import ui.ManagerAction;
@@ -49,46 +52,75 @@ public class Manager
 
 	private void listDevices(UI ui, Data data)
 	{
-		// TODO
+		data.listAllDevice();
 	}
 
 	private void showDevice(UI ui, Data data)
 	{
-		// TODO
+		data.showAllDevice();
 	}
 
 	private void addDevice(UI ui, Data data)
 	{
-		// TODO
-	}
+		String marque;
+		String modele;
+		int numSerie;
+		short puissance;
+		boolean estAllume;
+		int interfacesReseau;
+
+		System.out.println("Donner la marque");
+		marque = UI.scanner.next();
+		System.out.println("Donner le modele");
+		modele = UI.scanner.next();
+		System.out.println("Donner un numéro de serie");
+		numSerie = UI.scanner.nextInt();
+		System.out.println("Donner une puissance");
+		puissance = UI.scanner.nextShort();
+		System.out.println("Est-il allumé [true/false]");
+		estAllume = UI.scanner.nextBoolean();
+		System.out.println("Donner l'interface réseau (0 ou plus)");
+		interfacesReseau = UI.scanner.nextInt();
+
+		data.addDevice(marque, modele, numSerie, puissance, estAllume, interfacesReseau);
+		System.out.println("peripherique " + marque + " portant le numero de serie " + numSerie + " de " +
+				puissance + "W a été ajouté");
+	}	
 
 	private void deleteDevice(UI ui, Data data)
 	{
-		// TODO
+		int iSuppr;
+		System.out.print("Entrer le numéro du périphérique à supprimer");
+		iSuppr = UI.scanner.nextInt();
+		data.supprDevice(iSuppr);
+
 	}
 
 	private void editDevice(UI ui, Data data)
 	{
-		// TODO
+		int iEdit;
+		System.out.println("Entrer le numéro du périphérique à éditer");
+		iEdit = UI.scanner.nextInt();
+		data.editDevice(iEdit);
 	}
 
 	private void listNetworks(UI ui, Data data)
 	{
-		// TODO
+		data.listAllNetwork();
 	}
 
 	private void showNetwork(UI ui, Data data)
 	{
-		// TODO
+		data.showAllNetwork();
 	}
 
 	private void listRooms(UI ui, Data data)
 	{
-		// TODO
+		data.listAllRoom();
 	}
 
 	private void showRoom(UI ui, Data data)
 	{
-		// TODO
+		data.showAllRoom();
 	}
 }
